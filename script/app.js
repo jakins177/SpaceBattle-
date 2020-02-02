@@ -119,13 +119,48 @@ let alienShip10 = new AlienShip();
 
 
 let myShip = new USS_Schwarzenegger();
+const MAX_NUMBER_OF_ALIEN_SHIPS = 10;
+const MIN_NUMBER_OF_ALIEN_SHIPS = 6;
 
-alienShipArray = [alienShip1, alienShip2, alienShip3, alienShip4, alienShip5, alienShip6];
+
+//alienShipArray = [alienShip1, alienShip2, alienShip3, alienShip4, alienShip5, alienShip6];
+//let alienShipAmount = 6;
+let alienShipAmount = getRandomIntInclusive(MIN_NUMBER_OF_ALIEN_SHIPS, MAX_NUMBER_OF_ALIEN_SHIPS);
+
+
+let alienShipArray = [];
+
+switch (alienShipAmount) {
+  case 6: 
+    alienShipArray = [alienShip1, alienShip2, alienShip3, alienShip4, alienShip5, alienShip6];
+    
+  break;
+  case 7:
+    alienShipArray = [alienShip1, alienShip2, alienShip3, alienShip4, alienShip5, alienShip6, alienShip7]; 
+    
+  break;
+  case 8:
+    alienShipArray = [alienShip1, alienShip2, alienShip3, alienShip4, alienShip5, alienShip6, alienShip7, alienShip8];  
+
+  break;
+  case 9:
+    alienShipArray = [alienShip1, alienShip2, alienShip3, alienShip4, alienShip5, alienShip6, alienShip7, alienShip9]; 
+    
+  break;
+  case 10:
+    alienShipArray = [alienShip1, alienShip2, alienShip3, alienShip4, alienShip5, alienShip6, alienShip7, alienShip9, alienShip10]; 
+    
+    break;  
+
+  default:
+    break;
+}
 
 
 //alienShipArray = [alienShip1, alienShip2, alienShip3, alienShip4, alienShip5, alienShip6,alienShip7,alienShip8,alienShip9,alienShip10  ];
 
 //alienShipArray = [alienShip1, alienShip2 ];
+
 
 let currentAlienShip = "";
 
@@ -134,6 +169,10 @@ let round = 1;
 let retreat = false;
 
 console.log('%c spacebattle', 'font-size: 40px'); 
+
+console.log("  ");
+
+console.log(`%c There are ${alienShipAmount} alien ships to fight!`, 'font-size:16px;color:blue');
 
 while (true) {
   if (alienShipArray.length == 0 || myShip.hull <= 0 || retreat) {
@@ -159,7 +198,7 @@ while (true) {
       alienShipArray.splice(0, 1);
       
 
-      if (window.confirm(`You defeated alien ${round}. Do you want to make a hasty retreat now?`)) {
+      if (window.confirm(`You defeated alien ${round} and you have ${myShip.hull} hull left. Do you want to make a hasty retreat now?`)) {
         retreat = true;
       }
 
