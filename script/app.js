@@ -8,19 +8,19 @@ class USS_Schwarzenegger {
   }
 
   attack(alienShip) {
-    console.log("You are attacking an alien!");
+    console.log("%c You are attacking an alien!", 'color:green');
     let chanceAccuracy = Math.random();
 
     // console.log(`chance accuracy is ${chanceAccuracy}`);
 
     if (chanceAccuracy > this.accuracy) {
-      console.log("You MISSED the alien!!!");
+      console.log("%c You MISSED the alien!!!", 'color:red');
 
     } else {
-      console.log("You HIT the alien!!!");
+      console.log("%c You HIT the alien!!!", 'color:green');
       alienShip.hull -= this.firepower;
-      console.log(`You have done ${this.firepower} damage`);
-      console.log(`The Alien has ${alienShip.hull} remaining`);
+      console.log(`%c You have done ${this.firepower} damage`,'font-style: italic; background: azure; border: 1px solid grey;');
+      console.log(`%c The Alien has ${alienShip.hull} remaining`, 'font-style: italic;' );
 
     }
 
@@ -65,20 +65,20 @@ class AlienShip {
 
 
   attack(humanShip) {
-    console.log("The alien is attacking you!");
+    console.log("%c The alien is attacking you!", 'color: red');
     let chanceAccuracy = Math.random();
 
     //console.log(`chance accuracy is ${chanceAccuracy}`);
 
     if (chanceAccuracy > this.accuracy) {
-      console.log("The alien MISSED you!!!");
+      console.log("%c The alien MISSED you!!!", 'color: green');
 
 
     } else {
-      console.log("The alien HIT you!!!");
+      console.log("%c The alien HIT you!!!", 'color: red;');
       humanShip.hull -= this.firepower;
-      console.log(`The Alien has done ${this.firepower} damage`);
-      console.log(`You have ${humanShip.hull} remaining`);
+      console.log(`%c The Alien has done ${this.firepower} damage`, 'font-style: italic; background: azure; border: 1px solid grey;');
+      console.log(`%c You have ${humanShip.hull} remaining`, "font-style: italic" );
 
     }
 
@@ -133,12 +133,14 @@ let round = 1;
 
 let retreat = false;
 
+console.log('%c spacebattle', 'font-size: 40px'); 
+
 while (true) {
   if (alienShipArray.length == 0 || myShip.hull <= 0 || retreat) {
     break;
   } else {
     console.log("\n");
-    console.log(`***ROUND ${round}***`);
+    console.log(`%c ***ROUND ${round}***`,'font-size:16px;color:blue');
     console.log("\n");
 
     currentAlienShip = alienShipArray[0];
@@ -153,20 +155,21 @@ while (true) {
 
     myShip.attack(currentAlienShip);
     if (currentAlienShip.hull < 1) {
-      console.log("Alien ship defeated !!!");
+      console.log("%c Alien ship defeated !!!", 'color:green');
       alienShipArray.splice(0, 1);
-      round++;
+      
 
-      if (window.confirm("Do you want to make a hasty retreat?")) {
+      if (window.confirm(`You defeated alien ${round}. Do you want to make a hasty retreat now?`)) {
         retreat = true;
       }
 
+      round++;
       break;
     }
 
     currentAlienShip.attack(myShip);
     if (myShip.hull < 1) {
-      console.log("You have been defeated !!!");
+      console.log("%c You have been defeated !!!", 'color:red');
       round++;
       break;
     }
@@ -174,5 +177,5 @@ while (true) {
   }
 }
 
-
-console.log("~ GAME OVER !!!! ~");
+console.log(" ");
+console.log("%c ~ GAME OVER !!!! ~", 'color:blue');
